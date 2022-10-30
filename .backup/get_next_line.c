@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/30 23:58:14 by wbousfir          #+#    #+#             */
+/*   Updated: 2022/10/30 23:58:17 by wbousfir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	ft_putstr(char *s)
@@ -7,33 +19,33 @@ void	ft_putstr(char *s)
 	write(1, s, ft_strlen(s));
 }
 
-char	*new_remain(char *line, char *remain)
+char	*new_str(char *buf, char *str)
 {
 	int	j;
 	char	*new;
 
 	j = 0;
-	if (is_nl(line) == 0)
+	if (is_nl(buf) == 0)
 	{
-		free(remain);
+		free(str);
 		return (NULL);
 	}
-	while (line[j])
+	while (buf[j])
 	{
-		if (line[j++] == '\n')
+		if (buf[j++] == '\n')
 			break ;
 	}
-	if (line[j] == 0)
+	if (buf[j] == 0)
 	{
-		free(remain);
+		free(str);
 		return (0);
 	}
-	new = ft_strdup(line + j);
-	free(remain);
+	new = ft_strdup(buf + j);
+	free(str);
 	return (new);
 }
 
-char	*new_line(char *line)
+char	*new_buf(char *buf)
 {
 	int		len;
 	int		i;
@@ -41,18 +53,18 @@ char	*new_line(char *line)
 
 	len = 0;
 	i = 0;
-	if (is_nl(line) == 0)
-		return (line);
-	while (line[len] != '\n')
+	if (is_nl(buf) == 0)
+		return (buf);
+	while (buf[len] != '\n')
 		len++;
 	len++;
 	new = (char *) malloc(len + 1);
 	len = 0;
-	while (line[len] != '\n')
-		new[i++] = line[len++];
+	while (buf[len] != '\n')
+		new[i++] = buf[len++];
 	new[i++] = '\n';
 	new[i] = 0;
-	free(line);
+	free(buf);
 	return (new);
 }
 
@@ -83,33 +95,29 @@ char	*read_file(int fd, int *end)
 
 char	*get_next_line(int fd)
 {
-	static char	*remain = NULL;
-	char		*line;
+	static char	*str = NULL;
+	char		*buf;
 	int			end;
 
 	end = 0;
 	if (fd < 0)
 		return (NULL);
-	if (remain)
-		line = ft_strdup(remain);
+	if (str)
+		buf = ft_strdup(str);
 	else
-		line = read_file(fd, &end);
+		buf = read_file(fd, &end);
 	while (fd >= 0)
 	{
-		if (is_nl(line) || end)
+		if (is_nl(buf) || end)
 		{
-			remain = new_remain(line, remain);
-			return (new_line(line));
+			str = new_str(buf, str);
+			return (new_buf(buf));
 		}
-		line = ft_strjoin(line, read_file(fd, &end));
+		buf = ft_strjoin(buf, read_file(fd, &end));
 	}
 	return (NULL);
 }
 
-void	ft_putchar_fd(int fd, char c)
-{
-	write(fd, &c, 1);
-}
 /*
 int	main(void)
 {
@@ -121,7 +129,7 @@ int	main(void)
 		ft_putstr("open() failed");
 		return (1);
 	}
-	get_next_line(fd);
+	get_next_buf(fd);
 	if (close(fd) == -1)
 	{
 		ft_putstr("close() failed");
