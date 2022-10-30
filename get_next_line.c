@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 23:58:14 by wbousfir          #+#    #+#             */
-/*   Updated: 2022/10/31 00:05:10 by wbousfir         ###   ########.fr       */
+/*   Updated: 2022/10/31 00:14:59 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-/*
+
 int	main(void)
 {
 	int	fd;
@@ -130,11 +130,13 @@ int	main(void)
 		ft_putstr("open() failed");
 		return (1);
 	}
-	get_next_buf(fd);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	if (close(fd) == -1)
 	{
 		ft_putstr("close() failed");
 		return (1);
 	}
 	return (0);
-}*/
+	}

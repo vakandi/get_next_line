@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 02:38:52 by majjig            #+#    #+#             */
-/*   Updated: 2022/10/31 00:04:39 by wbousfir         ###   ########.fr       */
+/*   Updated: 2022/10/31 00:13:11 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
+
+# define BUFFER_SIZE 4000
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
