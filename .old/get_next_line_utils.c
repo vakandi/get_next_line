@@ -3,113 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 21:55:29 by wbousfir          #+#    #+#             */
-/*   Updated: 2022/10/13 23:30:05 by wbousfir         ###   ########.fr       */
+/*   Created: 2021/11/12 02:38:28 by majjig            #+#    #+#             */
+/*   Updated: 2022/10/31 00:05:56 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	if (str == NULL)
+		return (0);
+	while (*str++)
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*dest;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(src);
+	dest = (char *) malloc((len + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	while (i < len)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*str;
+	int		total;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (s2 == NULL)
+		return (s1);
+	total = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = (char *) malloc(total * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (s1[j])
+		str[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = 0;
+	free(s1);
+	free(s2);
+	return (str);
+}
+
+int	check_newline(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_putstr(char *s)
-{
 	if (s == NULL)
-		return ;
-	write(1, s, ft_strlen(s));
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-char	*ft_get_line(char *str, char *buf, int i, int j, int fd)
-{
-	int ret;
-
-	ret = read(fd, buf, BUFFER_SIZE);
-	while (buf[i] != '\0')
+		return (0);
+	while (s[i])
 	{
-		if (buf[i] != '\n')
-			i++;
-		else
-		{
-			while (j <= i)
-			{
-				str[j] = buf[j];
-				printf("%c", buf[j]);
-				j++;
-			}
-			str = (char *)malloc(sizeof(j + 1));
-			if (str == NULL)
-				return (NULL);
-			ret = read(fd, buf, BUFFER_SIZE);
-			i++;
-			return(str);
-		}
-		i++;
-	}
-	return(0);
-}
-/*
-char	*ft_get_line(char *str, char *buf, int i, int j, int fd)
-{
-	int ret;
- 
-	ret = read(fd, buf, BUFFER_SIZE);
-	while (buf[i] != '\0')
-	{
-		if (buf[i] != '\n')
-			i++;
-		else
-		{
-			while (j <= i)
-			{
-				str[j] = buf[j];
-				printf("%c", buf[j]);
-				j++;
-			}
-		///	str = malloc((int)j + 1) * sizeof(char);
-			str = (char *)malloc(sizeof(*str) * (j + 1));
-			if (str == NULL)
-				return (NULL);
-			ret = read(fd, buf, BUFFER_SIZE);
-			i++;
-			return(str);
-		}
-		i++;
-	}
-	return(0);
-}*/
-/*
-char	*ft_print_line(char *str, char *buf, int j, int i)
-{
-	while (buf[i] != '\n')
-	{
-		if (buf[i] != '\n')
-			i++;
-		else
-		{
-			while (j <= i)
-			{
-				str[j] = buf[j];
-				j++;
-			}
-			i++;
-			return (str);
-		}
+		if (s[i] == '\n')
+			return (1);
 		i++;
 	}
 	return (0);
-}*/
+}

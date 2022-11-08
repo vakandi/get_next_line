@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 23:58:14 by wbousfir          #+#    #+#             */
-/*   Updated: 2022/11/08 18:30:24 by wbousfir         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 void	ft_putstr(char *s)
@@ -25,7 +13,7 @@ char	*new_str(char *buf, char *str)
 	char	*new;
 
 	j = 0;
-	if (check_newline(buf) == 0)
+	if (is_nl(buf) == 0)
 	{
 		free(str);
 		return (NULL);
@@ -53,7 +41,7 @@ char	*new_buf(char *buf)
 
 	len = 0;
 	i = 0;
-	if (check_newline(buf) == 0)
+	if (is_nl(buf) == 0)
 		return (buf);
 	while (buf[len] != '\n')
 		len++;
@@ -95,8 +83,7 @@ char	*read_file(int fd, int *end)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
-	str = NULL;
+	static char	*str = NULL;
 	char		*buf;
 	int			end;
 
@@ -109,14 +96,13 @@ char	*get_next_line(int fd)
 		buf = read_file(fd, &end);
 	while (fd >= 0)
 	{
-		if (check_newline(buf) || end)
+		if (is_nl(buf) || end)
 		{
 			str = new_str(buf, str);
 			return (new_buf(buf));
 		}
 		buf = ft_strjoin(buf, read_file(fd, &end));
 	}
-	free(buf);
 	return (NULL);
 }
 
@@ -131,12 +117,11 @@ int	main(void)
 		ft_putstr("open() failed");
 		return (1);
 	}
-	printf("%s", get_next_line(fd));
+	get_next_buf(fd);
 	if (close(fd) == -1)
 	{
 		ft_putstr("close() failed");
 		return (1);
 	}
 	return (0);
-	}
-*/
+}*/

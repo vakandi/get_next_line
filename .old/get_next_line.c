@@ -5,41 +5,121 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 22:05:37 by wbousfir          #+#    #+#             */
-/*   Updated: 2022/10/13 23:33:53 by wbousfir         ###   ########.fr       */
+/*   Created: 2022/10/30 23:58:14 by wbousfir          #+#    #+#             */
+/*   Updated: 2022/11/08 18:30:24 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_putchar_fd(int fd, char c)
+void	ft_putstr(char *s)
 {
-	write(fd, &c, 1);
+	if (s == NULL)
+	return ;
+	write(1, s, ft_strlen(s));
 }
 
-void	ft_free_buffer(char *buf, char *str)
+char	*new_str(char *buf, char *str)
 {
+	int	j;
+	char	*new;
+
+	j = 0;
+	if (check_newline(buf) == 0)
+	{
+		free(str);
+		return (NULL);
+	}
+	while (buf[j])
+	{
+		if (buf[j++] == '\n')
+			break ;
+	}
+	if (buf[j] == 0)
+	{
+		free(str);
+		return (0);
+	}
+	new = ft_strdup(buf + j);
 	free(str);
+	return (new);
+}
+
+char	*new_buf(char *buf)
+{
+	int		len;
+	int		i;
+	char	*new;
+
+	len = 0;
+	i = 0;
+	if (check_newline(buf) == 0)
+		return (buf);
+	while (buf[len] != '\n')
+		len++;
+	len++;
+	new = (char *) malloc(len + 1);
+	len = 0;
+	while (buf[len] != '\n')
+		new[i++] = buf[len++];
+	new[i++] = '\n';
+	new[i] = 0;
 	free(buf);
+	return (new);
+}
+
+char	*read_file(int fd, int *end)
+{
+	char	*readed;
+	int		nb;
+	char	*tmp;
+
+	readed = (char *) malloc(BUFFER_SIZE + 1);
+	nb = read(fd, readed, BUFFER_SIZE);
+	if (nb <= 0)
+	{
+		*end = 10;
+		free(readed);
+		return (NULL);
+	}
+	if (nb < BUFFER_SIZE)
+	{
+		readed[nb] = 0;
+		tmp = ft_strdup(readed);
+		free(readed);
+		return (tmp);
+	}
+	readed[BUFFER_SIZE] = '\0';
+	return (readed);
 }
 
 char	*get_next_line(int fd)
 {
-	int		i;
-	int		j;
-	char	*buf = NULL;
-	char	*str = NULL;
+	static char	*str;
+	str = NULL;
+	char		*buf;
+	int			end;
 
-	i = 0;
-	j = 0;
-//	if (fd == -1)
-//		return (0);
-	ft_get_line(str, buf, j, i, fd);
-//	printf("%s", ft_get_line(str, buf, j, i, fd));
-	//ft_get_line(str, buf, j, i, fd);
-	return (0);
-	ft_free_buffer(buf, str);
+	end = 0;
+	if (fd < 0)
+		return (NULL);
+	if (str)
+		buf = ft_strdup(str);
+	else
+		buf = read_file(fd, &end);
+	while (fd >= 0)
+	{
+		if (check_newline(buf) || end)
+		{
+			str = new_str(buf, str);
+			return (new_buf(buf));
+		}
+		buf = ft_strjoin(buf, read_file(fd, &end));
+	}
+	free(buf);
+	return (NULL);
 }
+
 /*
 int	main(void)
 {
@@ -48,14 +128,15 @@ int	main(void)
 	fd = open("test/test.txt", O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr("open() failed\n");
+		ft_putstr("open() failed");
 		return (1);
 	}
-	get_next_line(fd);
+	printf("%s", get_next_line(fd));
 	if (close(fd) == -1)
 	{
-		ft_putstr("close() failed\n");
+		ft_putstr("close() failed");
 		return (1);
 	}
 	return (0);
-}*/
+	}
+*/

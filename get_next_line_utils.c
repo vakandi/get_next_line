@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 02:38:28 by majjig            #+#    #+#             */
-/*   Updated: 2022/10/31 00:05:56 by wbousfir         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:05:16 by majjig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-int	check_newline(char *s)
+int	is_nl(char *s)
 {
 	int	i;
 
