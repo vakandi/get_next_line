@@ -6,7 +6,7 @@
 /*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 02:38:52 by majjig            #+#    #+#             */
-/*   Updated: 2021/11/16 18:19:20 by majjig           ###   ########.fr       */
+/*   Updated: 2022/11/08 21:13:22 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		is_nl(char *s);
 char	*ft_strdup(char *src);
 int		ft_strlen(char *str);
 char	*new_line(char *line);
-char	*new_remain(char *line, char *remain);
+char	*new_str(char *line, char *remain);
 char	*read_file(int fd, int *end);
 #endif
