@@ -2,11 +2,9 @@
 
 char	*new_remain(char *line, char *remain)
 {
-	int		i;
 	int		j;
 	char	*new;
 
-	i = 0;
 	j = 0;
 	if (is_nl(line) == 0)
 	{

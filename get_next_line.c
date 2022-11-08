@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 23:58:14 by wbousfir          #+#    #+#             */
-/*   Updated: 2022/10/31 00:26:31 by wbousfir         ###   ########.fr       */
+/*   Updated: 2022/11/08 18:30:24 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-
+/*
 int	main(void)
 {
 	int	fd;
@@ -139,3 +139,4 @@ int	main(void)
 	}
 	return (0);
 	}
+*/
