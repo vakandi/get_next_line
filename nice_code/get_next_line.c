@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:11:08 by wbousfir          #+#    #+#             */
-/*   Updated: 2023/03/09 22:11:09 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:52:04 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,23 @@ char	*get_next_line(int fd)
 	free(save);
 	return (save = NULL);
 }
+
+/*
+int	main(void)
+{
+	int	fd;
+
+	fd = open("test/test.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr("open() failed");
+		return (1);
+	}
+	get_next_buf(fd);
+	if (close(fd) == -1)
+	{
+		ft_putstr("close() failed");
+		return (1);
+	}
+	return (0);
+}*/
