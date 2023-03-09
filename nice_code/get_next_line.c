@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:11:08 by wbousfir          #+#    #+#             */
-/*   Updated: 2023/03/09 22:52:04 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:54:30 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_next_line(int fd)
 	return (save = NULL);
 }
 
-/*
+
 int	main(void)
 {
 	int	fd;
@@ -52,11 +52,11 @@ int	main(void)
 		ft_putstr("open() failed");
 		return (1);
 	}
-	get_next_buf(fd);
+	get_next_line(fd);
 	if (close(fd) == -1)
 	{
 		ft_putstr("close() failed");
 		return (1);
 	}
 	return (0);
-}*/
+}
