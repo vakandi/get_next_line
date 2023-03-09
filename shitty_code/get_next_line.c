@@ -67,6 +67,8 @@ char	*read_file(int fd, int *end)
 	if (nb <= 0)
 	{
 		*end = 10;
+		if(nb < 0)
+			*end = -1;
 		free(readed);
 		return (NULL);
 	}
@@ -96,6 +98,13 @@ char	*get_next_line(int fd)
 		buf = read_file(fd, &end);
 	while (fd >= 0)
 	{
+		if(end == -1 )
+		{
+			str = new_str(buf, str);
+			free(buf);
+			str = 0;
+			return 0;
+		}
 		if (is_nl(buf) || end)
 		{
 			str = new_str(buf, str);

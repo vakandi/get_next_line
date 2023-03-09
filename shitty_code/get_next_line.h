@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: majjig <majjig@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 02:38:52 by majjig            #+#    #+#             */
-/*   Updated: 2022/11/08 21:13:22 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:42:48 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE
+#endif
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
 /* INCLUDES */
 # include <stdlib.h>
 # include <unistd.h>
