@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/09 22:10:41 by wbousfir          #+#    #+#             */
+/*   Updated: 2023/03/09 22:10:47 by wbousfir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	ft_putstr(char *s)
 {
 	if (s == NULL)
-	return ;
+		return (void);
 	write(1, s, ft_strlen(s));
 }
 
 char	*new_str(char *buf, char *str)
 {
-	int	j;
+	int		j;
 	char	*new;
 
 	j = 0;
@@ -67,7 +79,7 @@ char	*read_file(int fd, int *end)
 	if (nb <= 0)
 	{
 		*end = 10;
-		if(nb < 0)
+		if (nb < 0)
 			*end = -1;
 		free(readed);
 		return (NULL);
@@ -98,12 +110,12 @@ char	*get_next_line(int fd)
 		buf = read_file(fd, &end);
 	while (fd >= 0)
 	{
-		if(end == -1 )
+		if (end == -1)
 		{
 			str = new_str(buf, str);
 			free(buf);
 			str = 0;
-			return 0;
+			return (0);
 		}
 		if (is_nl(buf) || end)
 		{
