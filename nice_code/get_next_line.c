@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	while (!ft_strchr(saved, '\n'))
+	while (!return_found_char(saved, '\n'))
 	{
 		x = read(fd, buf, BUFFER_SIZE);
 		if (x <= 0)
