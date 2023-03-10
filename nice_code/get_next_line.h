@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:11:12 by wbousfir          #+#    #+#             */
-/*   Updated: 2023/03/09 22:57:10 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:28:16 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
+//# include <stdio.h>
+# include <stdio.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100000000000
+#  define BUFFER_SIZE 100
 # endif
 
 char	*get_next_line(int fd);
