@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:11:08 by wbousfir          #+#    #+#             */
-/*   Updated: 2023/03/10 19:29:45 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:40:04 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	while (!return_found_char(saved, '\n'))
+	while (return_found_char(saved, '\n') == 0)
 	{
 		x = read(fd, buf, BUFFER_SIZE);
 		if (x <= 0)
@@ -49,13 +49,13 @@ int	main(void)
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 	{
-		write(1, "open() failed", 12);
+		write(1, "open() failed", 13);
 		return (1);
 	}
 	printf("%s", get_next_line(fd));
 	if (close(fd) == -1)
 	{
-		write(1, "close() failed", 12);
+		write(1, "close() failed", 13);
 		return (1);
 	}
 	return (0);
