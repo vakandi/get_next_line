@@ -41,7 +41,7 @@ char	*get_next_line(int fd)
 	return (save = NULL);
 }
 
-
+/*
 int	main(void)
 {
 	int	fd;
@@ -59,4 +59,4 @@ int	main(void)
 		return (1);
 	}
 	return (0);
-}
+}*/

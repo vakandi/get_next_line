@@ -18,7 +18,7 @@ char	*ft_strjoin(char *save, char *buf, int count)
 	int		x;
 	int		y;
 
-		buf[count] = 0;
+	buf[count] = 0;
 	x = 0;
 	y = 0;
 	p = malloc((ft_strlen(save) + ft_strlen(buf) + 1) * sizeof(char));
