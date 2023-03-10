@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*saved;
 	char		*buf;
 	ssize_t		x;
 
@@ -23,22 +23,22 @@ char	*get_next_line(int fd)
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	while (!ft_strchr(save, '\n'))
+	while (!ft_strchr(saved, '\n'))
 	{
 		x = read(fd, buf, BUFFER_SIZE);
 		if (x <= 0)
 			break ;
-		save = ft_strjoin(save, buf, x);
+		saved = ft_strjoin(saved, buf, x);
 	}
 	free(buf);
-	if (ft_strlen(save) > 0 && x >= 0)
+	if (ft_strlen(saved) > 0 && x >= 0)
 	{
-		buf = nwline(save);
-		save = cutline(save);
+		buf = return_full_line(saved);
+		saved = return_line_after_newline(saved);
 		return (buf);
 	}
-	free(save);
-	return (save = NULL);
+	free(saved);
+	return (saved = NULL);
 }
 
 /*

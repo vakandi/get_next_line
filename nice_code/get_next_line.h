@@ -22,8 +22,8 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*nwline(char *p);
-char	*cutline(char *p);
+char	*return_full_line(char *p);
+char	*return_line_after_newline(char *p);
 char	*ft_strchr(char *s, int c);
 int		ft_strlen(char *p);
 char	*ft_strjoin(char *save, char *buf, int count);

@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *save, char *buf, int count)
+char	*ft_strjoin(char *saved, char *buf, int count)
 {
 	char	*p;
 	int		x;
@@ -21,22 +21,22 @@ char	*ft_strjoin(char *save, char *buf, int count)
 	buf[count] = 0;
 	x = 0;
 	y = 0;
-	p = malloc((ft_strlen(save) + ft_strlen(buf) + 1) * sizeof(char));
+	p = malloc((ft_strlen(saved) + ft_strlen(buf) + 1) * sizeof(char));
 	if (!p)
 		return (NULL);
-	if (save)
+	if (saved)
 	{
-		while (save[x])
+		while (saved[x])
 		{
-		p[x] = save[x];
+		p[x] = saved[x];
 		x++;
 		}
 	}
 	while (buf[y])
 		p[x++] = buf[y++];
 	p[x] = '\0';
-	if (save)
-		free(save);
+	if (saved)
+		free(saved);
 	return (p);
 }
 
@@ -68,35 +68,35 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*nwline(char *save)
+char	*return_full_line(char *saved)
 {
 	char	*line;
 	int		x;
 
 	x = 0;
-	while (save[x] && save[x] != '\n')
+	while (saved[x] && saved[x] != '\n')
 		x++;
-	if (save[x] == '\n')
+	if (saved[x] == '\n')
 		x++;
 	line = malloc((x + 1) * sizeof(char));
 	if (!line)
 		return (NULL);
 	x = 0;
-	while (save[x] && save[x] != '\n')
+	while (saved[x] && saved[x] != '\n')
 	{
-		line[x] = save[x];
+		line[x] = saved[x];
 		x++;
 	}
-	if (save[x] == '\n')
+	if (saved[x] == '\n')
 	{
-		line[x] = save[x];
+		line[x] = saved[x];
 		x++;
 	}
 	line[x] = '\0';
 	return (line);
 }
 
-char	*cutline(char *save)
+char	*return_line_after_newline(char *saved)
 {
 	char	*cut;
 	int		x;
@@ -104,17 +104,17 @@ char	*cutline(char *save)
 
 	y = 0;
 	x = 0;
-	while (save[x] && save[x] != '\n')
+	while (saved[x] && saved[x] != '\n')
 		x++;
-	if (save[x] == '\n')
+	if (saved[x] == '\n')
 		x++;
-	cut = malloc((ft_strlen(save) - x) + 1 * sizeof(char));
+	cut = malloc((ft_strlen(saved) - x) + 1 * sizeof(char));
 	if (!cut)
 		return (NULL);
-	while (save[x])
-		cut[y++] = save[x++];
+	while (saved[x])
+		cut[y++] = saved[x++];
 	cut[y] = '\0';
-	if (save)
-		free(save);
+	if (saved)
+		free(saved);
 	return (cut);
 }
