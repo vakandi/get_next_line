@@ -52,6 +52,40 @@ int	ft_strlen(char *str)
 	return (x);
 }
 
+// This function searches for the first occurrence of a character in a string.
+// If the character is found, it returns a pointer to the character in the string.
+// If the character is not found, it returns NULL.
+
+char *ft_strchr(char *s, int c)
+{
+    // Initialize a variable x to 0.
+    int x = 0;
+
+    // Check if the string is NULL, if so, return NULL.
+    if (s == NULL)
+    {
+        return (NULL);
+    }
+
+    // Loop through the string until the end is reached.
+    while (s[x] != '\0')
+    {
+        // If the current character in the string is equal to the target character,
+        // return a pointer to the current character in the string.
+        if (s[x] == c)
+        {
+            return (&s[x]);
+        }
+
+        // Increment the index variable x.
+        x++;
+    }
+
+    // If the target character is not found in the string, return NULL.
+    return (NULL);
+}
+
+/*
 char	*ft_strchr(char *s, int c)
 {
 	int	x;
@@ -67,7 +101,7 @@ char	*ft_strchr(char *s, int c)
 	}
 	return (NULL);
 }
-
+*/
 char	*return_full_line(char *saved)
 {
 	char	*line;
