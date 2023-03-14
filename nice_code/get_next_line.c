@@ -6,7 +6,7 @@
 /*   By: wbousfir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:11:08 by wbousfir          #+#    #+#             */
-/*   Updated: 2023/03/10 19:40:04 by wbousfir         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:59:19 by wbousfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	*saved;
 	char		*buf;
-	ssize_t		x;
+	int			x;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd == 1 || fd == 2)
 		return (NULL);
@@ -40,19 +40,27 @@ char	*get_next_line(int fd)
 	free(saved);
 	return (saved = NULL);
 }
-
 /*
 int	main(void)
 {
 	int	fd;
-
+	char *p;
+	int x = 0;
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		write(1, "open() failed", 13);
 		return (1);
 	}
-	printf("%s", get_next_line(fd));
+	printf("%s\n", p);
+	//while(x < 100)
+//	{
+//		p = get_next_line(fd);
+//		printf("%s\n", p);
+//		free(p);
+//		x++;
+//	}
+	while(1);
 	if (close(fd) == -1)
 	{
 		write(1, "close() failed", 13);
